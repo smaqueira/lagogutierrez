@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="site-title">Bienvenidos al sitio del Camping Lago Gutierrez - Patagonia Argentina</title>
+    <meta property="og:title" content="Gugagas Energy" />
+    <meta property="og:description" content="Soluciones energéticas eficientes y sostenibles." />
+    <meta property="og:image" content="https://www.gugagasenergy.com/img/logo.jpg" />
+    <meta property="og:url" content="https://www.gugagasenergy.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gugagas Energy" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gugagas Energy" />
+    <meta name="twitter:description" content="Soluciones energéticas eficientes y sostenibles." />
+    <meta name="twitter:image" content="https://www.gugagasenergy.com/img/logo.jpg" />
+    <link rel="icon" href="img/logo.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <h2>¡Bienvenido al Sitio del Camping Lago Gutierrez!</h2>
+            <p>Patagonia - Argentina</p>
+            <button id="playVideoButton">Ver Video</button>
+            <button id="closeWelcomeButton">Cerrar</button>
+        </div>
+    </div>
+    <div id="videoModal" class="video-modal">
+        <div class="video-container">
+            <button id="closeVideoButton" class="close-button">×</button>
+            <video id="promoVideo" src="videos/camping.mp4" controls playsinline></video>
+        </div>
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const videoModal = document.getElementById('videoModal');
+    const promoVideo = document.getElementById('promoVideo');
+    const closeVideoButton = document.getElementById('closeVideoButton');
+    const hasVideoBeenShown = localStorage.getItem('videoShownOnce');
+
+    function showVideoModal() {
+      videoModal.style.display = 'flex';
+      promoVideo.play(); // Puedes dejar esto aquí si quieres que se reproduzca al abrir el modal manualmente
+      localStorage.setItem('videoShownOnce', 'true'); // Guardamos la marca incluso si se abre manualmente
+    }
+
+    function hideVideoModal() {
+      videoModal.style.display = 'none';
+      promoVideo.pause();
+      promoVideo.currentTime = 0;
+    }
+
+    // **ELIMINAMOS LA PARTE QUE MUESTRA EL MODAL AUTOMÁTICAMENTE**
+    // if (!hasVideoBeenShown) {
+    //   setTimeout(showVideoModal, 1500);
+    // }
+
+    closeVideoButton.addEventListener('click', hideVideoModal);
+
+    videoModal.addEventListener('click', function(event) {
+      if (event.target === videoModal) {
+        hideVideoModal();
+      }
+    });
+
+    // **Aquí puedes agregar el código para mostrar el modal cuando el usuario interactúa (ej. clic en un botón)**
+    // const miBoton = document.getElementById('miBotonVideo'); // Reemplaza 'miBotonVideo' con el ID de tu botón
+    // if (miBoton) {
+    //   miBoton.addEventListener('click', showVideoModal);
+    // }
+  });
+</header> <script>
+        window.onload = function() {
+        var iframe = document.getElementById('embedded-page');
+        iframe.onload = function() {
+          try {
+            // Intenta acceder a la altura del contenido dentro del iframe
+            var contentHeight = iframe.contentWindow.document.body.scrollHeight || iframe.contentDocument.documentElement.scrollHeight;
+            iframe.style.height = contentHeight + 'px';
+          } catch (e) {
+            console.error("Error al ajustar la altura del iframe:", e);
+            // Posiblemente establecer una altura mínima o un valor predeterminado si falla el acceso
+            iframe.style.height = '400px';
+          }
+        };
+      };
+    </script>
+    <div class="social-float">
+        <a href="https://www.instagram.com/campinglagogutierrez?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank" aria-label="Instagram">
+            <img src="img/instagram.jpg" alt="Icono de Instagram">
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100041323722481" target="_blank" aria-label="Facebook">
+            <img src="img/facebook.jpg" alt="Icono de Facebook">
+        </a>
+    </div>
+    <script src="script.js"></script>
+    <a href="https://wa.me/5492944315352" class="whatsapp-float" target="_blank"
+        title="Chateá con nosotros por WhatsApp">
+        <img src="img/whatsapp-icon.png" alt="WhatsApp" />
+    </a>
+    <header>
+        <div class="logo">
+            <a href="#"><img src="img/lagologo.png" alt="Logo de Tu Camping"></a>
+        </div>
+        <button class="hamburger-button">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </button>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                <li><a href="#alojamientos">Alojamientos</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#excursiones">Excursiones Gratuitas</a></li>
+                <li><a href="#contingentes">Contingentes</a></li>
+                <li><a href="galeria.html">Galería de Fotos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span id="vive-aventura" class="animar-izquierda">Vive la aventura</span>
+                <br>
+                <span id="en-camping" class="animar-derecha">en Nuestro Camping</span>
+            </h1>
+            <img src="./img/tu-imagen-giratoria.gif" alt="Imagen giratoria" class="imagen-giratoria">
+            <p id="descubre-naturaleza" class="animar-subir">Descubre la naturaleza y disfruta de una experiencia
+                inolvidable</p>
+        </div>
+        </div>
+    </section>
+    <section id="sobre-nosotros" class="section">
+        <h2>Sobre Nosotros</h2>
+        <p>En nuestro campamento de ambiente familiar, la experiencia de la naturaleza se entrelaza delicadamente con un
+            compromiso
+            genuino por brindar una atención excepcional. A lo largo de nuestra trayectoria, hemos comprendido que la
+            verdadera
+            esencia de una estancia memorable al aire libre reside en la calidez de la acogida y la dedicación a
+            anticipar las
+            necesidades de nuestros visitantes. Nos esforzamos por cultivar un ambiente donde cada detalle se cuida con
+            esmero,
+            asegurando que su tiempo con nosotros sea sinónimo de tranquilidad, comodidad y una atención personalizada
+            que realza la
+            belleza del entorno.</p>
+    </section>
+    <section id="alojamientos" class="section">
+        <h2>Nuestros Alojamientos</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="./img/dormis.png" alt="Descripción de la parcela">
+                <h3>Dormis</h3>
+                <p>Nuestros dormis son la onda para familias chicas o grupos de amigos. Tienen lo básico para que estén
+                    re cómodos durante
+                    su estadía.</p>
+            </div>
+            <div class="card">
+                <img src="./img/parcela.png" alt="Descripción de la parcela">
+                <h3>Parcela para Carpa</h3>
+                <p>¡Armá tu campamento a tu gusto en nuestras parcelas! Espacios pensados para que disfrutes al aire
+                    libre con tu carpa,
+                    casa rodante o lo que traigas. Te damos las conexiones básicas para que estés cómodo y a lo tuyo.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="servicios" class="section">
+        <h2>Nuestros Servicios</h2>
+        <div id="servicios-container">
+            <div class="servicio-boton active"><span>Fogones</span>
+                <div class="descripcion-servicio">Disponemos de espacios para
+                    encender fogones y compartir momentos alrededor del fuego
+                    en un entorno natural.
+                </div>
+            </div>
+            <div class="servicio-boton"><span>Parrilla</span>
+                <div class="descripcion-servicio">Área de parrilla para que los visitantes cocinen sus propias comidas
+                    al aire libre.
+                </div>
+            </div>
+            <div class="servicio-boton"><span>Zona WI-FI</span>
+                <div class="descripcion-servicio">Conexión WiFi de alta velocidad disponible para que los visitantes se
+                    mantengan conectados a internet durante su estadia en nuestro camping.</div>
+            </div>
+            <div class="servicio-boton"><span>Parrillas</span>
+                <div class="descripcion-servicio">Zonas designadas para que puedas preparar tus propias comidas a la
+                    parrilla.</div>
+            </div>
+            <div class="servicio-boton"><span>Mesas y Bancos</span>
+                <div class="descripcion-servicio">Espacios con bancos y mesas a disposición de los visitantes puedan
+                    sentarse cómodamente y disfrutar de momentos al Aire Libre.
+                </div>
+            </div>
+            <div class="servicio-boton"><span>Vigilancia Nocturna</span>
+                <div class="descripcion-servicio">Servicio de vigilancia nocturna para garantizar la seguridad y
+                    tranquilidad de nuestros visitantes.
+                </div>
+            </div>
+            <div class="servicio-boton"><span>Baños con Agua Caliente</span>
+                <div class="descripcion-servicio">Baños con duchas de agua caliente.</div>
+            </div>
+            <div class="servicio-boton"><span>Luz Eléctrica</span>
+                <div class="descripcion-servicio">Servicio de luz disponible las 24 horas para brindar iluminación
+                    constante y garantizar acceso a un servicio esencial.</div>
+            </div>
+            <div class="servicio-boton"><span>Proveduria</span>
+                <div class="descripcion-servicio">Proveeduría con alimentos no perecederos para satisfacer las
+                    necesidades básicas de los visitantes.
+                </div>
+            </div>
+            <div class="servicio-boton"><span>Restaurante</span>
+                <div class="descripcion-servicio">restaurante con opciones de comida rápida y deliciosa para satisfacer
+                    tus antojos en nuestro camping.
+                </div>
+            </div>
+    </section>
+    <section id="excursiones" class="section">
+        <h2>Excursiones Gratuitas desde la puerta del Camping</h2>
+        <div class="actividades-list">
+            <div class="actividad-item">
+                <input type="checkbox" id="senderismo" class="actividad-toggle">
+                <label for="senderismo" class="actividad-header">
+                <img src="./img/duendes.jpg" alt="duendes">
+                <h3>400 Mts Visita a la Cascada de los duendes</h3>
+            </label>
+                <div class="actividad-content">
+                    <p>Duración de la Actividad 40 minutos</p>
+                </div>
+            </div>
+            <div class="actividad-item">
+                <input type="checkbox" id="ciclismo" class="actividad-toggle">
+                <label for="ciclismo" class="actividad-header">
+                <img src="./img/mirlago.jpg" alt="Mirador Lago">
+                <h3>1km Visita al Mirador Lago Gutierrez</h3>
+            </label>
+                <div class="actividad-content">
+                    <p>Duración de la Actividad 90 minutos Aprox.</p>
+                </div>
+            </div>
+            <div class="actividad-item">
+                <input type="checkbox" id="natacion" class="actividad-toggle">
+                <label for="natacion" class="actividad-header">
+                <img src="./img/playamunoz.jpg" alt="Munoz">
+                <h3>5km Visita a Playa Muñoz</h3>
+            </label>
+                <div class="actividad-content">
+                    <p>Duración de la Actividad 2 horas Aprox.</p>
+                </div>
+            </div>
+            <div class="actividad-item">
+                <input type="checkbox" id="observacion_estrellas" class="actividad-toggle">
+                <label for="observacion_estrellas" class="actividad-header">
+                <img src="./img/catedral.jpg" alt="Catedral">
+                <h3>8km Visita a la Base del Cerro Catedral</h3>
+            </label>
+                <div class="actividad-content">
+                    <p>Duración de la Actividad 3 horas Aprox.</p>
+                </div>
+            </div>
+            <div class="actividad-item">
+                <input type="checkbox" id="juegos_aire_libre" class="actividad-toggle">
+                <label for="juegos_aire_libre" class="actividad-header">
+                <img src="./img/frey.jpg" alt="Juegos al aire libre">
+                <h3>10km Visita al Refugio de Montaña Frey</h3>
+            </label>
+                <div class="actividad-content">
+                    <p>Duración de la Actividad 4 horas Aprox.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="special-offer section" id="contingentes">
+        <h2>¡Ofertas Especiales para Contingentes!</h2>
+        <div class="contingentes-content">
+            <div class="contingentes-image">
+                <a href="#"><img src="img/contingente.png" alt="Contingente"></a>
+            </div>
+            <div class="contingentes-text">
+                <h3>Descuentos Exclusivos para Grupos Grandes</h3>
+                <p>¿Estás organizando un viaje con un grupo grande de amigos, familiares o una excursión escolar?
+                    ¡Tenemos precios especiales para ti!</p>
+                <ul>
+                    <li><strong>Tarifas reducidas</strong> por persona para grupos de más de 10 integrantes.</li>
+                    <li><strong>Paquetes especiales</strong> que incluyen alojamiento y actividades.</li>
+                    <li><strong>Flexibilidad</strong> en las fechas y tipos de alojamiento según disponibilidad.</li>
+                    <li><strong>Asesoramiento personalizado</strong> para planificar tu estadía perfecta.</li>
+                </ul>
+                <a href="#contacto" class="special-button button">¡Consulta Nuestras Ofertas!</a>
+            </div>
+        </div>
+    </section>
+    <section id="galeria-incrustada" class="section">
+    <iframe id="embedded-page" src="galeria.html" width="90%" height="655px" frameborder="0" scrolling="no"></iframe>
+    </iframe>
+</section>
+<section id="contacto" class="section">
+    <section id="contacto-form">
+        <h2>¡Contáctanos!</h2>
+        <p>Envíanos un mensaje y te responderemos a la brevedad.</p>
+        <form action="https://formspree.io/f/mjkwboel" method="POST">
+            <div class="form-group">
+                <label for="nombre">Nombre del Acampante:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono (Opcional):</label>
+                <input type="tel" id="telefono" name="telefono">
+            </div>
+            <p>Dejanos tu mensaje</p>
+            <div class="form-group">
+                <label for="mensaje"></label>
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+            </div>
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <section id="informacion-adicional">
+        <div class="ubicacion">
+            <h3>Ubicación</h3>
+            <p>Cascada de los Duendes, Parque Nacional Nahuel Huapi, Seccional Lago Gutiérrez.</p>
+            <p>San Carlos de Bariloche, Río Negro, Argentina</p>
+            <div class="mapa-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d711.6351189740952!2d-71.414562!3d-41.179393!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a7026f0f5c753%3A0x924971dc22ca7fb9!2sCamping%20Lago%20Guti%C3%A9rrez!5e1!3m2!1ses-419!2sus!4v1745246341725!5m2!1ses-419!2sus"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+        <div class="como-llegar">
+            <h3>¿Cómo Llegar?</h3>
+            <ul>
+                <li>Desde San Carlos de Bariloche tomar el colectivo 50.</li>
+                <li>Bajar en Villa los Coihues y caminar bordeando el Lago 2km.</li>
+                <li>En coche: Tomar la Ruta Provincial 82 hacia Villa Los Coihues.</li>
+            </ul>
+        </div>
+        <div class="reservas">
+            <h3>Reservas</h3>
+            <p>Teléfono: +54 9 294 480 7830</p>
+        </div>
+        <div class="horarios">
+            <h3>Horarios</h3>
+            <p>Abierto todos los días las 24 horas</p>
+            <p>(de Septiembre a Mayo)</p>
+            <p>                         </p>
+            <p>                         </p>
+            <p>                         </p>
+        </div>
+    </section>
+</section>
+</div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Camping Lago Gutierrez.</p>
+    <p>Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    const hamburgerButton = document.querySelector('.hamburger-button');
+        const mainNav = document.querySelector('.main-nav');
+        const navLinks = document.querySelectorAll('.main-nav ul li a');
+        const servicioBotones = document.querySelectorAll('.servicio-boton');
+        const bookingModal = document.getElementById('bookingModal');
+        const openBookingModalButton = document.getElementById('open-booking-modal');
+        const closeButton = document.querySelector('.close-button');
+
+        hamburgerButton.addEventListener('click', () => {
+            mainNav.classList.toggle('open');
+            hamburgerButton.classList.toggle('open');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('open')) {
+                    mainNav.classList.remove('open');
+                    hamburgerButton.classList.remove('open');
+                }
+            });
+        });
+
+        servicioBotones.forEach(boton => {
+            boton.addEventListener('click', function() {
+                servicioBotones.forEach(b => {
+                    if (b !== this) {
+                        b.classList.remove('active');
+                        const descripcion = b.querySelector('.descripcion-servicio');
+                        if (descripcion) {
+                            descripcion.style.display = 'none';
+                        }
+                    }
+                });
+                this.classList.toggle('active');
+                const descripcion = this.querySelector('.descripcion-servicio');
+                if (descripcion) {
+                    descripcion.style.display = this.classList.contains('active') ? 'block' : 'none';
+                }
+            });
+        });
+
+        openBookingModalButton.addEventListener('click', () => {
+            bookingModal.style.display = 'block';
+        });
+
+        closeButton.addEventListener('click', () => {
+            bookingModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == bookingModal) {
+                bookingModal.style.display = 'none';
+            }
+        });
+    <script src="script.js">
+</script>
+</body>
+
+</html>

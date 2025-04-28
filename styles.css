@@ -1,0 +1,1713 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding-top: 85px;
+    background-color: #f9f9f9;
+    color: black;
+    line-height: 1.7;
+}
+
+header {
+    background-color: #c1e5b6;
+    color: #333;
+    padding: 1.5rem 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(95, 93, 93, 0.658);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    height: 105px;
+    box-sizing: border-box;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #558B2F;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.logo a img {
+    max-height: 80px;
+    height: auto;
+    margin-right: 10px;
+    display: block;
+}
+.imagen-giratoria {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: rotateInCenter 4s ease-out forwards;
+    /* 4 segundos de duración */
+}
+.animar-subir {
+    opacity: 0;
+    /* Inicialmente invisible */
+    transform: translateY(100%);
+    /* Inicialmente fuera de la pantalla, desde abajo */
+    animation: subir-texto 3s ease-out forwards;
+    /* Aplica la animación */
+    line-height: 1;
+        /* Ajusta este valor para reducir el espacio */
+}
+.fullscreen-carousel {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1001;
+    /* Mayor que otros elementos */
+    align-items: center;
+    justify-content: center;
+}
+
+.fullscreen-carousel.active {
+    display: flex;
+}
+
+.fullscreen-image-container {
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+}
+
+.fullscreen-image {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    /* Mantiene la proporción de la imagen */
+}
+
+.close-fullscreen {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: #030000;
+    cursor: pointer;
+    z-index: 1002;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.close-fullscreen:hover {
+    opacity: 1;
+}
+
+.prev-fullscreen,
+.next-fullscreen {
+    position: absolute;
+    opacity: 0 top: 50%;
+    transform: translateY(-50%);
+    background-color: #16f133;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: #16f133;
+    cursor: pointer;
+    z-index: 1002;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    padding: 10px 20px;
+}
+
+.prev-fullscreen {
+    left: 30px;
+}
+
+.next-fullscreen {
+    border-radius: 5px;
+    /* Opcional: para redondear las esquinas del fondo */
+    right: 30px;
+}
+
+.prev-fullscreen:hover,
+.next-fullscreen:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #f11633;
+    /* Fondo negro ligeramente transparente */
+    border-radius: 5px;
+}
+.prev-fullscreen::before {
+    content: "‹";
+    /* O el carácter que estés usando */
+}
+.next-fullscreen::before {
+    content: "›";
+    /* O el carácter que estés usando */
+}
+.prev-fullscreen i,
+.next-fullscreen i {
+    font-size: 1rem;
+    color: #f11633;
+}
+
+.prev-fullscreen:hover i,
+.next-fullscreen:hover i {
+    color: #f11633;
+    /* Ejemplo de cambio de color al hover */
+}
+.fullscreen-trigger {
+    cursor: pointer;
+    /* Indica que se puede hacer clic en la imagen */
+}
+/* Estilos para la sección de información adicional */
+#informacion-adicional {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+#informacion-adicional h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#informacion-adicional p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+#informacion-adicional ul {
+    list-style: none;
+    padding-left: 0;
+    color: #666;
+}
+
+#informacion-adicional ul li {
+    margin-bottom: 8px;
+}
+
+.mapa-container {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    overflow: hidden;
+    /* Evita que el mapa se salga del contenedor */
+}
+
+.mapa-container iframe {
+    width: 100%;
+    height: 300px;
+    /* Altura inicial del mapa */
+    border: 0;
+}
+.main-nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.main-nav ul li {
+    margin-left: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 12 px;
+    font-weight: 400;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    height: 55%;
+}
+
+.main-nav ul li a:hover {
+    color: #fff;
+    background-color: #558B2F;
+}
+
+.main-nav ul li a:active {
+    background-color: #33691E;
+    transform: scale(0.95);
+}
+.main-nav.show {
+    display: block;
+    /* o flex, grid, etc. */
+}
+.hamburger-button {
+    display: none;
+    position: absolute;
+    top: 23px;
+    right: 20px;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+}
+
+.hamburger-button.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-button.open .bar:nth-child(2) {
+    opacity: 2;
+}
+
+.hamburger-button.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Estilos para la disposición en pantallas más grandes */
+@media (min-width: 769px) {
+    .main-nav ul li a {
+       display: flex;
+       place-items: center;
+                /* Convierte el enlace en un contenedor flex */
+       align-items: center;
+                /* Alinea verticalmente el contenido al centro */
+       justify-content: center;
+       text-align: center;
+                /* Opcional: Si quieres centrar el texto horizontalmente también */
+                /* Otros estilos que ya tengas */
+            }
+    #informacion-adicional {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .ubicacion,
+    .como-llegar,
+    .reservas,
+    .horarios {
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+    }
+
+    .mapa-container iframe {
+        height: 400px;
+        /* Mayor altura del mapa en escritorio */
+    }
+}
+@keyframes subir-texto {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotateInCenter {
+    0% {
+            opacity: 0;
+            /* Comienza completamente invisible */
+            transform: rotate(180deg) translateX(-50%) scale(0.8);
+            /* Empieza girando y con tamaño reducido */
+            top: 50%;
+            /* Empieza desde el centro vertical */
+        }
+    
+        50% {
+            opacity: 0.6;
+            /* Empieza a volverse un poco visible */
+            transform: rotate(90deg) translateX(-50%) scale(1);
+            /* Gira menos y toma tamaño normal */
+        }
+    
+        100% {
+            opacity: 1;
+            /* Totalmente visible */
+            transform: rotate(0deg) translateX(-50%) scale(1);
+            /* Sin rotación, tamaño normal */
+            top: 50%;
+            /* Centrado en la pantalla */
+        }
+}
+
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 65px;
+    right: 280px;
+    z-index: 9999;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    text-decoration: none;
+}
+
+.whatsapp-float img {
+    width: 60px;
+    height: 60px;
+}
+
+.whatsapp-float:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 1);
+    transform: translateY(-5px);
+}
+h1 class="aventura-text">Vive la Aventura en Nuestro Camping</h1><img src="./img/tu-imagen-giratoria.png"alt="Imagen giratoria"class="imagen-giratoria"><p>Descubre la naturaleza y disfruta de una experiencia inolvidable.</p><div class="hero-buttons"><a href="#reservas"class="button">Reservar Ahora</a></div></div></section>He realizado los siguientes cambios: He añadido la clase .aventura-text a la etiqueta <h1>que contiene el texto principal. He insertado la etiqueta <img>justo después de la etiqueta <h1>. Asegúrate de reemplazar "./img/tu-imagen-giratoria.png"con la ruta correcta a tu imagen. Le he asignado las clases imagen-giratoria y un alt descriptivo. Tu CSS (styles.css) debería seguir siendo el mismo que te proporcioné antes: CSS .hero-content {
+    position: relative;
+    /* Importante para posicionar la imagen relativamente */
+    text-align: center;
+    /* Asegúrate de que el contenido esté centrado si lo deseas */
+}
+
+footer {
+    background-color: #333;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    line-height: 0.5;
+    font-size: 13px;
+    padding: 2.5rem 0;
+    position: fixed;
+    bottom: 0;
+/* Lo pega a la parte inferior de la pantalla */
+    left: 0;
+/* Lo pega al lado izquierdo de la pantalla */
+    width: 100%;
+/* Ocupa todo el ancho de la pantalla */
+    box-sizing: border-box;
+/* Asegura que el padding no afecte el ancho total */
+    z-index: 1000;
+}
+
+.aventura-text {
+    position: relative;
+    /* Asegura que el texto esté en su propio contexto de posicionamiento si es necesario */
+    z-index: 10;
+    /* Asegura que el texto esté por encima de la imagen */
+    /* Otros estilos que ya tengas para el h1 */
+}
+.imagen-giratoria {
+    position: absolute;
+    /* Mantiene absolute para la animación inicial */
+    top: 100%;
+    /* Inicialmente fuera de la vista, desde abajo */
+    left: 50%;
+    width: 170px;
+    height: auto;
+    opacity: 0.2;
+    /* Inicialmente casi transparente */
+    transform: translateX(-50%) scale(0.8);
+    /* Centrado horizontal y ligeramente más pequeña al inicio */
+    animation: fadeZoomIn 13s ease-in-out forwards;
+    /* Animación principal */
+    z-index: 100;
+    /* Inicialmente por delante del header */
+}
+.hero-title {
+    font-size: 2.5rem;
+    /* Ajusta el tamaño de la fuente como desees */
+    text-align: center;
+    /* Centra el texto en general */
+    overflow: hidden;
+    /* Oculta el texto que está fuera del contenedor durante la animación */
+    line-height: 1;
+        /* Ajusta este valor */
+    margin-top: -7rem;
+}
+
+.animar-izquierda {
+    display: inline-block;
+    /* Permite aplicar transformaciones y mantener el flujo en línea */
+    opacity: 0;
+    /* Inicialmente invisible */
+    transform: translateX(-100%);
+    /* Inicialmente fuera de la pantalla a la izquierda */
+    animation: entrar-izquierda 4s ease-out forwards;
+    /* Aplica la animación */
+    font-size: 2.2rem;
+}
+
+.animar-derecha {
+    display: inline-block;
+    /* Permite aplicar transformaciones y mantener el flujo en línea */
+    opacity: 0;
+    /* Inicialmente invisible */
+    transform: translateX(100%);
+    /* Inicialmente fuera de la pantalla a la derecha */
+    animation: entrar-derecha 4s ease-out forwards;
+    /* Aplica la animación */
+    animation-delay: 0.5s;
+    /* Retrasa un poco la animación para que entre después de la primera línea */
+    font-size: 1.8rem;
+}
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1001;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+    border-radius: 8px;
+    text-align: center;
+    z-index: 100000;
+}
+
+.modal-content h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #4cae4c;
+}
+
+.video-modal {
+        display: none;
+        padding: 30px 20px;
+        /* Oculto por defecto */
+        position: fixed;
+        /* Se mantiene en su lugar */
+        z-index: 100000;
+        /* Asegura que esté por encima del modal de bienvenida */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Ocupa todo el ancho */
+        height: 100%;
+        /* Ocupa toda la altura */
+        background-color: rgba(0, 0, 0, 0.9);
+        /* Fondo negro con 90% de opacidad */
+        justify-content: center;
+        /* Centra horizontalmente el contenido */
+        align-items: center;
+        /* Centra verticalmente el contenido */
+}
+
+.video-container {
+    position: relative;
+    background-color: #000;
+    /* Fondo negro para el video */
+    border-radius: 8px;
+    height: 1000px;
+    margin-top: -20px;
+    max-width: 90%;
+    max-height: 90%;
+    margin-left: -20px;
+    margin-right: 20px;
+    z-index: 100000;
+}
+
+.video-container video {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 100000;
+    margin: auto;
+    /* Centrar el video */
+}
+
+.video-modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1003;
+}
+
+.modal-open {
+    overflow: hidden;
+    /* Evitar scroll del body cuando el modal está abierto */
+}
+
+@keyframes entrar-izquierda {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes entrar-derecha {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.imagen-final {
+    /* No necesitamos estilos específicos aquí, la clase se usa principalmente para limpiar estilos inline */
+}
+
+.imagen-detras-header {
+    z-index: -1;
+    /* Se va detrás del header */
+}
+
+#hero {
+    background: url('./img/home.png') center/cover no-repeat;
+    background-position: bottom center;
+    background-color: #f0f8f0;
+    color: #fff;
+    text-align: center;
+    padding: 150px 20px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.hero-content h1.aventura-text {
+    font-size: 2rem;
+    /* Reduce el tamaño del título */
+    margin-bottom: 15px;
+}
+.hero-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.button,
+.special-button {
+    display: inline-block;
+    background-color: #558B2F;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 25px;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.button::before,
+.special-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-25deg);
+    transition: left 0.5s ease-in-out;
+}
+
+.button:hover::before,
+.special-button::hover::before {
+    left: 120%;
+}
+
+.button:hover,
+.special-button:hover {
+    background-color: #33691E;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.button:active,
+.special-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.section>* {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card img {
+    width: 100%;
+    display: block;
+    height: auto;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.card:hover img {
+    opacity: 0.9;
+}
+
+.gallery-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.gallery-grid img {
+    width: 20px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 15px;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+#servicios-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+    width: 90%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.servicio-boton {
+    background-color: #fff;
+    color: #555;
+    font-weight: 500;
+    padding: 12px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 0;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, margin-bottom 0.2s ease-in-out,
+        background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.servicio-boton:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background-color: #f0f0f0;
+}
+
+.servicio-boton.active {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 10px;
+    background-color: #558B2F;
+    color: #fff;
+}
+
+.descripcion-servicio {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #555;
+    display: none;
+    position: relative;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.servicio-boton.active .descripcion-servicio {
+    display: block;
+}
+
+.servicio-boton span {
+    display: block;
+}
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #030303;
+    /* Fondo oscuro semitransparente */
+    display: none;
+    /* Inicialmente oculto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    /* Asegura que esté por encima de todo */
+}
+
+.lightbox.active {
+    display: flex;
+    /* Mostrar el lightbox */
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+    /* Para posicionar el botón de cerrar */
+}
+
+#lightbox-image-container {
+    position: relative;
+    /* Importante para posicionar elementos dentro */
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#lightbox-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+#fullscreen-button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #558B2F;
+    color: white;
+    border: none;
+    top: 550px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001;
+}
+
+#galeria-inicial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#imagen-principal-galeria {
+    max-width: 130%;
+    height: auto;
+    cursor: pointer;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#ver-todas-fotos {
+    background-color: #558B2F;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#ver-todas-fotos:hover {
+    background-color: #558B2F;
+}
+
+/* Estilos existentes para .gallery-grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+
+.gallery-grid a {
+    display: block;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+}
+/* Ajustamos la posición del botón de presentación */
+#play-pause-button {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #558B2F;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001;
+}
+
+#cerrar-galeria {
+    position: absolute;
+    top: 40px;
+    bottom: 10px;
+    right: 1px;
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001;
+}
+
+#cerrar-galeria:hover {
+    opacity: 0.8;
+}
+
+#fullscreen-button.slideshow-active {
+    display: none !important;
+}
+
+.fullscreen-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(29, 236, 63, 0.5);
+    color: green;
+    border: none;
+    padding: 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    z-index: 1002;
+    /* Asegurarse de que estén por encima de la imagen */
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.fullscreen-arrow:hover {
+    opacity: 1;
+}
+
+.fullscreen-arrow-left {
+    left: 20px;
+}
+
+.fullscreen-arrow-right {
+    right: 20px;
+}
+
+/* Ocultar las flechas por defecto */
+.fullscreen-arrow {
+    display: none;
+}
+
+/* Mostrar las flechas cuando el lightbox está en pantalla completa */
+body.fullscreen-active .fullscreen-arrow {
+    display: block;
+}
+
+/* Ajustamos la posición del botón de presentación */
+#play-pause-button {
+    position: absolute;
+    top: 10px;
+    /* Más cerca del borde superior del contenedor */
+    left: 50%;
+    transform: translateX(-50%);
+    background: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001;
+}
+
+.social-float {
+    position: fixed;
+    /* Para que flote y no se desplace con la página */
+    bottom: 10px;
+    /* Ajusta la distancia desde la parte inferior */
+    left: 290px;
+    /* Ajusta la distancia desde la izquierda */
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Fondo blanco semitransparente (ajusta la opacidad) */
+    padding: 5px;
+    /* Espacio alrededor de los iconos */
+    border-radius: 7px;
+    /* Bordes redondeados (opcional) */
+    z-index: 1010;
+    /* Asegura que esté por encima de otros elementos */
+    display: flex;
+    /* Para alinear los iconos horizontalmente */
+    flex-direction: column;
+    gap: 10px;
+    /* Espacio entre los iconos */
+    align-items: center;
+    /* Centra los iconos verticalmente dentro del contenedor */
+    justify-content: center;
+    /* Centra los iconos horizontalmente dentro del contenedor */
+    transition: background-color 0.3s ease;
+    /* Transición suave para el hover (opcional) */
+}
+
+.social-float:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    /* Fondo ligeramente más opaco al pasar el ratón (opcional) */
+}
+
+.social-float a {
+    display: block;
+    /* Para que los enlaces ocupen espacio y sean clickeables */
+}
+
+.social-float img {
+    width: 50px;
+    /* Ajusta el tamaño de los iconos */
+    height: autopx;
+    display: block;
+    /* Evita espacios extra debajo de la imagen */
+    opacity: 0.8;
+    /* Opacidad de los iconos (opcional) */
+    transition: opacity 0.3s ease;
+    /* Transición suave para el hover (opcional) */
+}
+
+.social-float img:hover {
+    opacity: 1;
+    /* Iconos más opacos al pasar el ratón (opcional) */
+}
+
+.social-float.right {
+    left: auto;
+    right: 5px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #fff;
+    font-size: 2.5em;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.close-button:hover {
+    opacity: 1;
+}
+#contacto address {
+    text-align: center;
+    margin-top: 15px;
+    font-style: normal;
+    line-height: 1.8;
+}
+
+.special-offer {
+    background-color: #f0f8f0;
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.special-offer h2 {
+    color: #2E7D32;
+    border-bottom: 3px solid #81C784;
+    padding-bottom: 20px;
+    margin-bottom: 45px;
+    display: inline-block;
+    font-size: 2.2
+}
+
+.social-icons {
+    margin-top: 15px;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.social-icons img {
+    width: 10px;
+    height: auto;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.social-icons img:hover {
+    opacity: 1;
+}
+
+.special-offer {
+    background-color: #f0f8f0;
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.special-offer h2 {
+    color: #2E7D32;
+    border-bottom: 3px solid #81C784;
+    padding-bottom: 20px;
+    margin-bottom: 45px;
+    display: inline-block;
+    font-size: 2.2rem;
+}
+
+.contingentes-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+#actividades {
+    background-color: #f8f9fa;
+    /* Un color de fondo suave para diferenciar la sección */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.actividades-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.actividad-item {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.actividad-toggle {
+    display: none;
+    /* Ocultamos el checkbox */
+}
+
+.actividad-header {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    background-color: #e9ecef;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.actividad-header:hover {
+    background-color: #dee2e6;
+}
+
+.actividad-header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.actividad-header h3 {
+    text-align: center;
+    margin: 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.actividad-content {
+    text-align: center;
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+}
+
+/* Mostrar el contenido cuando el checkbox está marcado (seleccionado) */
+.actividad-toggle:checked+.actividad-header+.actividad-content {
+    text-align: center;
+    height: auto;
+    /* Ajusta la altura automáticamente según el contenido */
+}
+/* Media Queries para el menú hamburguesa */
+@media (max-width: 768px) {
+    footer {
+            
+        }
+        #sobre-nosotros {
+            padding-top: 100px; /* Reemplaza con la suma de la altura del header y el menú */
+    /* O */
+            margin-top: 187px; /* Si prefieres un espacio en blanco */
+        }
+        #alojamientos {
+            padding-top: 100px;
+   /* Reemplaza con la suma de la altura del header y el menú */* O */
+            margin-top: 187px;                        /* Si prefieres un espacio en blanco */
+        }
+                #servicios {
+                    padding-top: 120px;
+                    /* Reemplaza con la suma de la altura del header y el menú */
+                    * O */ margin-top: 187px;
+                    /* Si prefieres un espacio en blanco */
+                }
+                #excursiones {
+                    padding-top: 100px;
+                    /* Reemplaza con la suma de la altura del header y el menú */
+                    * O */ margin-top: 187px;
+                    /* Si prefieres un espacio en blanco */
+                }
+                #contingentes {
+                    padding-top: 100px;
+                    /* Reemplaza con la suma de la altura del header y el menú */
+                    * O */ margin-top: 187px;
+                    /* Si prefieres un espacio en blanco */
+                }
+                #contacto {
+                    padding-top: 115px;
+                    /* Reemplaza con la suma de la altura del header y el menú */
+                    * O */ margin-top: 187px;
+                    /* Si prefieres un espacio en blanco */
+                }
+        .main-nav.open {
+      /* Puedes ajustar el padding vertical del contenedor si lo deseas */
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+       .main-nav {
+            display: none;
+            /* Oculta el menú por defecto en pantallas pequeñas */
+            position: absolute;
+            top: 105px;
+            /* Ajusta si la altura de tu header es diferente */
+            left: 0;  
+            width: 100%;
+            height: 100px;
+            background-color: #558B2F;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 10px 0;
+            //font-size: 2em;
+            font-weight: bold;
+            //cursor: pointer;
+            //opacity: 0.8;
+            //transition: opacity 0.3s ease-in-out;
+            /* Estira los elementos para ocupar todo el ancho */
+            /* Ajustamos el padding vertical */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            z-index: 100;
+            /* Asegura que el padding no aumente el ancho */
+        }
+
+        .main-nav.open {
+            display: flex !important;
+            position: absolute;
+            background-color: #558B2F;
+            top: 105px;
+            left: 0;
+            width: 100%;
+            height: 100px
+            /* Muestra el menú cuando tiene la clase 'open' */
+            padding: 10px 0;
+            z-index: 150;
+        }
+
+        /* Oculta el logo cuando el menú está abierto en pantallas pequeñas */
+        .main-nav.open .logo {
+            display: none;
+        }
+        /* Muestra el icono de hamburguesa solo cuando el menú está abierto */
+        .main-nav.open .hamburger-icon-menu {
+            display: flex;
+            flex-direction: column;
+            border-radius: 0;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            margin: 15px auto;
+        /* Centra el icono en la parte superior del menú */
+        }
+                
+        /* Estilos para las barras del icono de hamburguesa en el menú */
+        .main-nav.open .hamburger-icon-menu .bar {
+            width: 100%;
+            border-radius: 0;
+            height: 3px;
+            padding: 10px 0;
+            background-color: #558B2F;
+        /* Color de las barras */
+        }
+                
+        /* Oculta el icono de hamburguesa por defecto en el menú desplegable */
+        .main-nav .hamburger-icon-menu {
+            display: none;
+        }
+                
+        .main-nav ul {
+            display: flex;
+            border-radius: 0;
+            justify-content: center;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 10px 0;
+            margin: 0;
+            width: 100%;
+            z-index: 101;
+        }
+                
+        .main-nav ul li {
+            margin: 0;
+            border-radius: 0;
+            width: 100%;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            z-index: 102;
+        }
+                
+        .main-nav ul li a {
+            display: flex;
+            align-items: center;
+            border-radius: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-top: 10;
+            margin-bottom: 10;
+            line-height: 1.3;
+            font-size: 0.80em;
+            justify-content: center;
+            padding: 10px 0;
+            background-color:#558B2F;
+            color:#558B2F;
+            line-height: 10px;
+            height: 10%;
+            height: auto;
+            text-align: left;
+            width: 10%;
+            box-sizing: border-box;
+            z-index: 103;
+        }
+                
+        .main-nav ul li:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+                
+        .hamburger-button {
+            display: block;
+            position: absolute;
+            top: 25px;
+            right: 20px;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 40px;
+            padding: 10px 0;
+            height: 40px;
+            border: none
+        /* Borde más grueso y verde */
+            cursor: pointer;
+            padding: 5px;
+            z-index: 101;
+        /* Opcional: para redondear un poco el borde */
+        }
+                
+        .hamburger-button .bar {
+            width: 70%;
+            height: 3px;
+            background-color: #558b2f91;
+            /* El color de las barras sigue siendo gris oscuro */
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+            
+        /* Muestra el icono de hamburguesa solo cuando el menú está abierto */
+        .main-nav.open .hamburger-icon-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 10px 0;
+            width: 30px;
+            height: 30px;
+            margin: 15px auto;
+            /* Centra el icono en la parte superior del menú */
+        }
+    
+        /* Estilos para las barras del icono de hamburguesa en el menú */
+        .main-nav.open .hamburger-icon-menu .bar {
+            width: 100%;
+            padding: 20px 0;
+            height: 3px;
+            background-color: #558B2F;
+            margin: 5px 0;
+            /* Color de las barras */
+        }
+    
+        /* Oculta el icono de hamburguesa por defecto en el menú desplegable */
+        .main-nav .hamburger-icon-menu {
+            display: none;
+        }
+
+        .main-nav.open ul {
+            display: block;
+            position: absolute;
+            top: 20px;
+                      /* Ejemplo de posición */
+            left: 20;
+            
+            width: 100%;
+            height: 40%;
+            padding: 0px 0;
+            background-color:#558B2F;
+            border-radius: 0;
+                      /* Bordes ahora rectos */
+                      /* Otros estilos */
+        }
+        
+    
+        .main-nav ul {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 40;
+            margin: 40;
+            width: 100%;
+            border-radius:5px;
+            padding: 10px 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .main-nav ul li {
+            margin-top: 10;
+            margin-bottom: 0;
+            padding: 10px 0;
+            margin: 0;
+            width: 100%;
+            border-bottom: 1px solid #558B2F;
+            z-index: 110;
+        }
+        
+        .main-nav ul li a {
+            display: block;
+            background-color: #ffffff;
+            color: #558B2F;
+            text-align: center;
+            width: 100%;
+            height: 150%;
+            box-sizing: border-box;
+            line-height: 1;
+            padding-top: 20px;
+                /* Reduce el padding superior */
+            padding-bottom: 20px;
+                /* Reduce el padding inferior */
+            margin-top: 20;
+                /* Elimina o reduce el margen superior */
+            margin-bottom: 0;
+                /* Elimina o reduce el margen inferior */
+            font-size: 1.2em;
+            z-index: 105;
+        }
+
+        .main-nav ul li:last-child {
+            border-bottom: none;
+        }
+    
+        .hamburger-button {
+            display: block;
+            position: absolute;
+            top: 23px;
+            right: 20px;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 40px;
+            height: 40px;
+            margin: 5px 0;
+            border:none
+            /* Borde más grueso y verde */
+            cursor: pointer;
+            padding: 1px;
+            z-index: 101;
+            /* Opcional: para redondear un poco el borde */
+        }
+        
+        .hamburger-button:active {
+            background-color: #558b2f99;
+            opacity: 0.9;
+            /* Reemplaza con el color que desees */
+        }
+    
+        .hamburger-button .bar {
+            width: 100%;
+            height: 6px;
+            background-color: #c1e5b6;
+            border: 4px solid #558b2faa;
+            border-radius: 10px;
+            /* El color de las barras sigue siendo gris oscuro */
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+       }
+
+/* Media Queries para el menú hamburguesa */
+@media (min-width: 769px) {
+    .main-nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: static;
+        width: auto;
+        top: auto;
+        left: auto;
+        background-color: transparent;
+        padding: 10px 0;
+        box-shadow: none;
+    }
+
+    .main-nav ul {
+        display: flex;
+        flex-direction: row;
+        padding: 10px 0;
+        align-items: center;
+        width: auto;
+    }
+
+    .main-nav ul li {
+        display: flex;
+        flex-direction: row;
+        border-bottom: none;
+        margin-left: 20px;
+    }
+
+    .main-nav ul li:first-child {
+        margin-left: 0;
+    }
+
+    .main-nav ul li a {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: transparent;
+        color: #333;
+        text-align: left;
+        width: auto;
+        border-radius: 8px;
+        box-sizing: border-box;
+        height: auto;
+        white-space: nowrap;
+    }
+
+    .main-nav ul li a:hover {
+        color: #558B2F;
+        background-color: #558B2F;
+        /* El color verde al pasar el cursor */
+        border-radius: 8px;
+        /* ¡Añadimos los bordes redondeados al pasar el cursor! */
+    }
+
+    .main-nav ul li a:active {
+        background-color: #558B2F;
+        /* El color verde al presionar */
+        transform: scale(0.95);
+        border-radius: 8px;
+        /* Los bordes redondeados al presionar ya están aquí */
+    }
+    .main-nav.open {
+        display: flex !important;
+        background-color: transparent;
+    }
+
+    .main-nav.open .logo {
+        display: block;
+    }
+
+    .main-nav.open .hamburger-icon-menu {
+        display: none;
+    }
+
+    .main-nav .hamburger-icon-menu {
+        display: none;
+    }
+
+    .hamburger-button {
+        display: none;
+    }
+}
+
+.contingentes-image {
+    flex: 1 1 300px;
+    max-width: 400px;
+}
+
+.contingentes-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contingentes-text {
+    flex: 1 1 400px;
+    max-width: 600px;
+}
+
+.contingentes-text h3 {
+    color: #388E3C;
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.contingentes-text p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.contingentes-text ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+.contingentes-text
